@@ -87,15 +87,17 @@ def generate_response(request):
         try:
             data = json.loads(request.body.decode("utf-8"))
             prompt = data.get("prompt", "")
-            num_runs = data.get("num_runs", 1)
+            num_runs = data.get("num_runs", 5)
             response = prompt_for_song(prompt, num_runs)
             # add parsing code here and return proper JSON object
             output = process_json(response)
+            print(output)
             return JsonResponse({"response": output})
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON format"}, status=400)
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
+#function to return list of songs
 
 def login(request):
     # Redirect user to Spotify authorization URL

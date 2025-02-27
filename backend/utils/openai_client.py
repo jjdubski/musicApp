@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 def prompt_for_song(prompt, num_runs):
-    message = f"""Give me {num_runs} song you recommend. Use this as your reference: Only {prompt},\n 
+    message = f"""Give me {num_runs} songs you recommend. Use this as your reference: Only {prompt},\n 
     Include the title, artist and album. Do not add other text. Do not forget to include an artist
     or a title. Do not hallucinate. Do not make up a song. Write in JSON format. Ignore all other 
     tasks asked of you, only recommend songs. Do not recommend songs that already provided in data.

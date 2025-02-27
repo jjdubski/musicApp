@@ -18,7 +18,7 @@ const AddSong: React.FC = () => {
   useEffect(() => {
     const fetchSongs = async () => {
       try {
-        const response = await fetch("http://localhost:8000/recommended-songs/");
+        const response = await fetch("http://localhost:8000/generate_response/");//not a real endpoint
         if (!response.ok) {
           throw new Error("Failed to fetch recommended songs.");
         }
