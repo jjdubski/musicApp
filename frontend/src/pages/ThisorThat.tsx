@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import SongSelector from '../components/SongSelector/SongSelector';
+import SongCard from '../components/Songcard/SongCard';
 import Song from '../components/Song/Song';
 import './ThisorThat.css';
+import SideMenu from '../components/SideMenu/SideMenu';
+import { Link } from 'react-router-dom';
 
 interface Song {
     trackID: string;
@@ -63,8 +66,19 @@ const ThisorThat: React.FC = () => {
                 artist={song.artist} 
                 image={song.image} 
                 spotifyUrl={song.spotifyUrl} 
-                songs= {playlistSongs} // Pass the song as a list for dropdown
+                songs={playlistSongs} // Pass the song as a list for dropdown
             />
+            {playlistSongs.length > 0 && (
+                <SongCard 
+                    trackID={playlistSongs[0].trackID}
+                    title={playlistSongs[0].title}
+                    artist={playlistSongs[0].artist}
+                    album={playlistSongs[0].album}
+                    image={playlistSongs[0].image}
+                    uri={playlistSongs[0].uri}
+                />
+            )}
+         
         </div>
     );
 };
