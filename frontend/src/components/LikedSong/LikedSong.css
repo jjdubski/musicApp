@@ -1,0 +1,74 @@
+.liked-song {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: fit-content;
+    align-items: flex-start;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid var(--secondary);
+    align-items: center; /* Align the items vertically in the center */
+    justify-content: space-between; /* Push the plus icon to the right */
+  }
+
+  .liked-song .song-title{ 
+    font-size: clamp(0.8em, 1.5vw, 1.2em);
+  }
+
+  /* .song{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 10px; 
+    height : 150px;
+    margin-bottom: 20px;
+} */
+
+  .liked-song:hover{
+    background-color: var(--primary);
+  }
+
+  .like-icon{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    margin: auto 5px auto auto;
+    border-radius: 5px;
+  }
+
+  .song-image{
+    width: clamp(50px, 10vh, 100px);
+    height: fit-content;
+    /* height: clamp(50px, 10vh, 100px); */
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    /* border-radius: 10px; */
+  }
+
+  .remove-button {
+    border: none;
+    padding: 5px;
+    padding-right: 1px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+  
+  .liked-button:hover {
+    background-color: #4c8a50;
+  }
+  
+  .like-icon {
+    width: 20px; /* Adjust icon size */
+    height: 20px;
+    /* margin-top: 50px; */
+  }
+
+  .liked-button:hover .like-icon {
+    color: #4c8a50; /* Change icon color on hover */
+  }
