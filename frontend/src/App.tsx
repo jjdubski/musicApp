@@ -11,7 +11,7 @@ import Search from './pages/Search.tsx'
 import SpotifyPlayer from 'react-spotify-web-playback';
 import PlaylistDetails from './pages/PlaylistDetails.tsx'
 import ThisOrThat from './pages/ThisorThat'
-
+import Discover from "./pages/Discover"
 
 function App() { 
   const [token, setToken] = useState<string | null>(null)
@@ -55,7 +55,7 @@ function App() {
       .catch(error => console.error('Error Fetching User: ', error))
 
       // needs implementation on backend for pulling and setting URI
-      fetch('http://localhost:8000/getUris')
+      fetch('http://localhost:8000/api/getUris')
         .then(res => {
           if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
@@ -110,6 +110,7 @@ function App() {
           <Route path="/playlist/:playlistID" element={<PlaylistDetails />} />
           <Route path="/add-to-playlist" element={<AddtoPlaylist />} />
           <Route path ="/this-or-that" element={<ThisOrThat />} />
+          <Route path="/discover" element={<Discover />} />
 
           
           {/* <Route path="logout" element={<Logout />} /> */}

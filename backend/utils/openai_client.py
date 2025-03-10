@@ -56,6 +56,49 @@ def prompt_for_song(prompt, num_runs):
             else:
                 break
     return None
+
+# below is function for the discover page 
+def generate_discover_songs(prompt):
+    """Fetch structured song recommendations specifically for the Discover Page."""
+    message = f"""Give me 5 songs based on this theme: {prompt}.
+    Format the response as a JSON list with title, artist, and release year, like this:
+    [
+        {{"title": "Song 1", "artist": "Artist 1", "release_year": "2024"}},
+        {{"title": "Song 2", "artist": "Artist 2", "release_year": "2024"}}
+    ]
+    Do not add extra text, explanations, or comments."""
+
+    retries = 5
+    for attempt in range(retries):
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o",
+                messages=[{"role": "user", "content": message}],
+                temperature=0.7
+            )
+
+            output = response.choices[0].message.content.strip()
+
+            try:
+                song_list = json.loads(output)
+                if isinstance(song_list, list) and all(isinstance(song, dict) for song in song_list):
+                    return song_list
+                else:
+                    raise ValueError("Response is not a valid JSON list")
+
+            except json.JSONDecodeError:
+                print(f"Error parsing JSON: {output}")
+                return []
+
+        except Exception as e:
+            print(f"GPT Error: {e}")
+            if "rate_limit_exceeded" in str(e):
+                time.sleep(30)
+            else:
+                break
+
+    return []
+
 #below is function to user search on search 
 def generate_song_suggestions(prompt):
     response = openai.ChatCompletion.create(

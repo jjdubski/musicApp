@@ -13,6 +13,7 @@ from songs.models import Song
 from utils.spotifyClient import sp
 from utils.openai_client import client, prompt_for_song
 from utils.openai_client import generate_song_suggestions, promptForArtists
+from utils.openai_client import generate_discover_songs
 
 logger = logging.getLogger(__name__)
 
@@ -110,6 +111,33 @@ def getRecommendations(request):
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON format"}, status=400)
     return JsonResponse({"error": "Invalid request method"}, status=405)
+
+
+#below is the function for Disocver page 
+@csrf_exempt
+def get_discover_songs(request):
+    if request.method == "GET":
+        try:
+            new_songs = generate_discover_songs("Give me 5 songs that were released in the past 5 months, make sure none repeat")
+            trending_songs = generate_discover_songs("Give me 5 most trending songs right now, make sure none repeat")
+            classic_songs = generate_discover_songs("Give me 5 songs that are older than 15 years and are deemed as classics, make sure none repeat")
+
+            return JsonResponse({
+                "new": new_songs,
+                "trending": trending_songs,
+                "classics": classic_songs
+            })
+
+        except Exception as e:
+            return JsonResponse({"error": f"Failed to fetch songs: {str(e)}"}, status=500)
+
+    return JsonResponse({"error": "Invalid request method"}, status=400)
+
+
+
+
+
+
 #below is the function to search page user 
 
 def getAISongRecommendations(request):

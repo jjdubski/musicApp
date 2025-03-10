@@ -1,0 +1,36 @@
+/* to test the disocver page*/
+
+.discover-container {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .song-section {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f8f8f8;
+  }
+  
+  .song-section h2 {
+    color: #333;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    background: #fff;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .error-message {
+    color: red;
+  }
+  

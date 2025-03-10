@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from . import views 
+from .views import getToken, get_uris, get_discover_songs  
 
 urlpatterns = [
     # Links to songs and playlists on backend
@@ -34,6 +35,7 @@ urlpatterns = [
     path("getAISongRecommendations/", views.getAISongRecommendations, name='getAISongRecommendations'),
     path("getRecommendations/", views.getRecommendations, name='getRecommendations'),
     path('musicAPI/search', views.search_songs, name='search_songs'),
+    path('api/discover/', get_discover_songs, name='get_discover_songs'), # Disocver page 
     path('getToken/', views.getToken, name='getToken'),
     path('getUser/', views.getUser, name='getUser'),
     path('getUris/', views.get_uris, name='get_uris'),  
